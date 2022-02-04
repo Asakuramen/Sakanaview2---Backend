@@ -1,0 +1,154 @@
+{
+  "schedule": [
+    {
+      "schedule_name": "ライト ON",
+      "device_id": "ac100v_no1",
+      "schedule_time": "16:00",
+      "job_args": "ON",
+      "schedule_day": [
+        "sun",
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    {
+      "schedule_name": "ライト OFF",
+      "device_id": "ac100v_no1",
+      "schedule_time": "23:50",
+      "job_args": "OFF",
+      "schedule_day": [
+        "sun",
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    {
+      "schedule_name": "CO2 ON",
+      "device_id": "ac100v_no5",
+      "schedule_time": "15:30",
+      "job_args": "ON",
+      "schedule_day": [
+        "sun",
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    {
+      "schedule_name": "CO2 OFF",
+      "device_id": "ac100v_no5",
+      "schedule_time": "23:00",
+      "job_args": "OFF",
+      "schedule_day": [
+        "sun",
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    {
+      "schedule_name": "AIR ON",
+      "device_id": "ac100v_no3",
+      "schedule_time": "08:00",
+      "job_args": "ON",
+      "schedule_day": [
+        "sun",
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    {
+      "schedule_name": "AIR OFF",
+      "device_id": "ac100v_no3",
+      "schedule_time": "15:30",
+      "job_args": "OFF",
+      "schedule_day": [
+        "sun",
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    {
+      "schedule_name": "カメラ撮影",
+      "device_id": "picmovie_no1",
+      "schedule_time": "20:00",
+      "job_args": "ON",
+      "schedule_day": [
+        "sun",
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat"
+      ]
+    }
+  ],
+  "control": {
+    "feeding": {
+      "solenoid_on_count": 3,
+      "solenoid_on_time": 0.2,
+      "solenoid_on_intervaltime": 2
+    },
+    "update_sensordb_interval": 10,
+    "coolfan_threshould": 29,
+    "heater_threshould": 22
+  },
+  "camera": {
+    "record_movie_time": 15,
+    "picture_f": 10,
+    "livestream_maxtime": 1
+  },
+  "monitor": {
+    "alarm_watar_temperature": {
+      "lower": 22,
+      "upper": 32
+    },
+    "alarm_air_temperature": {
+      "lower": 10,
+      "upper": 35
+    },
+    "alarm_air_humidity": {
+      "lower": 30,
+      "upper": 90
+    }
+  },
+  "device_id_name": {
+    "ac100v_no1": "照明",
+    "ac100v_no2": "not use",
+    "ac100v_no3": "エアレーション",
+    "ac100v_no4": "冷却ファン",
+    "ac100v_no5": "CO2",
+    "ac100v_no6": "FAN",
+    "feeder_no1": "えさやり",
+    "picmovie_no1": "カメラ"
+  },
+  "other": {
+    "mailaddress": "xxxxx@gmail.com",
+    "watar_temperature_compensation": 2,
+    "air_temperature_compensation": 0,
+    "air_humidity_compensation": -20
+  }
+}

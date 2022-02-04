@@ -1,0 +1,66 @@
+fswebcam写真撮影-------------------------------
+
+fswebcam -r 640x480 ./image.jpg
+fswebcam -r 1920x1080 --no-banner /home/tapstar/www/img/picture/xxx.jpg
+v4l2-ctl --list-formats-ext
+
+
+FFmpeg 動画録画---------------------------------
+
+ffmpeg \
+-y \
+-loglevel info \
+-f alsa -thread_queue_size 1024 -i plughw:CARD=Camera,DEV=0 \
+-f v4l2 -thread_queue_size 1024 -s 854x480 -i /dev/video0 \
+-c:v h264_omx -b:v 768k \
+-c:a aac \
+/home/tapstar/Python/xxx.mp4
+
+ffmpeg \
+-f alsa -thread_queue_size 8192 -i plughw:CARD=Camera,DEV=0 \
+-f v4l2 -thread_queue_size 8192 -s 640x480 -i /dev/video0 \
+-c:v h264_omx -b:v 768k \
+-c:a aac \
+/home/tapstar/www/img/movie/xxx.mp4
+
+
+HLS ストリーミング----------------------------
+
+strat.sh
+
+#! /bin/bash
+
+httpDir=~/www/img/live
+cd $httpDir
+
+ffmpeg \
+-f alsa -thread_queue_size 1024 -i plughw:CARD=Camera,DEV=0 \
+-f v4l2 -thread_queue_size 1024 -s 854x480 -i /dev/video0 \
+-filter_complex scale=854x480,fps=15 \
+-c:v h264_omx -b:v 764k -g 24 \
+-c:a aac -b:a 64k \
+-flags +cgop+global_header \
+-f hls \
+-hls_time 2 -hls_list_size 3 -hls_allow_cache 0 \
+-hls_segment_filename $httpDir/stream/stream_%d.ts \
+-hls_base_url stream/ \
+-hls_flags delete_segments \
+$httpDir/playlist.m3u8
+
+rm $httpDir/stream/stream_*.ts
+rm $httpDir/playlist.m3u8
+
+
+stop.sh
+
+#! /bin/bash
+
+pid=$(pgrep ffmpeg)
+kill ${pid}
+ 
+
+
+
+
+
+timeout 20 sh ~/www/img/live/hls_streaming_start.sh
